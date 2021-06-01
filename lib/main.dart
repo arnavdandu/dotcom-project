@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
     return Scaffold(
-      backgroundColor: grey,
+      backgroundColor: windowsBlue,
       /*
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40),
@@ -144,13 +144,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 150,
                             ),
-                            Text('Select Screen Name:                  ',
+                            Text('Select Screen Name:               ',
                                 style: TextStyle(
                                     fontFamily: "TimesNR",
                                     fontSize: 40,
-                                    
+                                    letterSpacing: 0.5,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.w300)),
+                                    fontWeight: FontWeight.w600)),
                             SizedBox(
                               height: 10,
                             ),
@@ -184,13 +184,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 140,
                             ),
-                            Text(
-                                'Location:                                  ',
+                            Text('Location:                               ',
                                 style: TextStyle(
                                     fontFamily: "TimesNR",
                                     fontSize: 40,
+                                    letterSpacing: 0.5,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.w300)),
+                                    fontWeight: FontWeight.w600)),
                             SizedBox(
                               height: 10,
                             ),
@@ -216,27 +216,48 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                             SizedBox(height: 30),
-                            AOLButton(
-                              onPressed: (){},
-                              child: Text('SIGN ON',
-                                  style: TextStyle(
-                                    shadows: <Shadow>[
-                                      Shadow(
-                                        offset: Offset(1.0, 1.0),
-                                        blurRadius: 3.0,
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                      ),
-                                      Shadow(
-                                        offset: Offset(1.0, 1.0),
-                                        blurRadius: 8.0,
-                                        color: Color.fromARGB(125, 0, 0, 255),
-                                      ),
-                                    ],
-                                      color: Colors.white,
-                                      fontFamily: "MSP",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w100,
-                                      letterSpacing: 2.0)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AOLButton(
+                                  width: 130,
+                                  onPressed: () {},
+                                  color: aolButtonBorderBlue,
+                                  child: Text('SETUP',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "MSP",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w100,
+                                          letterSpacing: 2.0)),
+                                ),
+                                SizedBox(width: 30),
+                                AOLButton(
+                                  width: 130,
+                                  onPressed: () {},
+                                  color: aolButtonBorderBlue,
+                                  child: Text('HELP',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "MSP",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w100,
+                                          letterSpacing: 2.0)),
+                                ),
+                                SizedBox(width: 30,),
+                                AOLButton(
+                                  width: 130,
+                                  onPressed: () {},
+                                  color: windowsDarkBlue,
+                                  child: Text('SIGN ON',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "MSP",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w100,
+                                          letterSpacing: 2.0)),
+                                ),
+                              ],
                             ),
                             Expanded(
                               child: Align(
