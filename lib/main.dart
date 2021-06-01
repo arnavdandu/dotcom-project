@@ -144,11 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 150,
                             ),
-                            Text('Select Screen Name:                 ',
+                            Text('Select Screen Name:                  ',
                                 style: TextStyle(
-                                    fontFamily: "FA",
-                                    fontSize: 25,
-                                    letterSpacing: -0.5,
+                                    fontFamily: "TimesNR",
+                                    fontSize: 40,
+                                    
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300)),
                             SizedBox(
@@ -185,11 +185,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 140,
                             ),
                             Text(
-                                'Location:                                     ',
+                                'Location:                                  ',
                                 style: TextStyle(
-                                    fontFamily: "FA",
-                                    fontSize: 25,
-                                    letterSpacing: -0.5,
+                                    fontFamily: "TimesNR",
+                                    fontSize: 40,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300)),
                             SizedBox(
