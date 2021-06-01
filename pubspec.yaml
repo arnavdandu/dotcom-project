@@ -46,6 +46,7 @@ flutter:
     - assets/icons/aol_shadow.png
     - assets/icons/aol_run.png
     - assets/icons/run_shadow.png
+    - assets/icons/aol_shadow_horizontal.png
   fonts:
     - family: Mondwest
       fonts:
