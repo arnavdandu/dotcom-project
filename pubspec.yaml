@@ -24,7 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^4.2.1
-  flutter95: ^1.0.0
+  flutter95: 
+    git:
+      url: https://github.com/arnavdandu/flutter95
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -69,6 +71,12 @@ flutter:
     - family: TimesNR
       fonts:
         - asset: fonts/pixelated-times-new-roman.ttf
+    - family: Tahoma
+      fonts:
+        - asset: fonts/Tahoma.ttf
+    - family: TahomaBold
+      fonts: 
+        - asset: fonts/TAHOMABD.TTF
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
