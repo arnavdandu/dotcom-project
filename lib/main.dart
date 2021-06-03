@@ -184,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 140,
                             ),
-                            Text('Location:                               ',
+                            Text('Connection:                           ',
                                 style: TextStyle(
                                     fontFamily: "TahomaBold",
                                     fontSize: 20,
@@ -205,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Material(
                                     color: white,
                                     child: Text(
-                                      "ISP/LAN Connection",
+                                      "Dial-up Connection",
                                       style: TextStyle(
                                           fontFamily: 'MS',
                                           fontSize: 16,
