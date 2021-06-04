@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter95/flutter95.dart';
+import 'package:us_hist_project/dial_up.dart';
 import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
@@ -39,45 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
     final TextEditingController controller = TextEditingController();
     return Scaffold(
       backgroundColor: windowsBlue,
-      /*
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40),
-        child: AppBar(
-          bottom: PreferredSize(
-              child: Container(
-                color: Colors.black,
-                height: 4.0,
-              ),
-              preferredSize: Size.fromHeight(4.0)),
-          elevation: 0,
-          shadowColor: Colors.black,
-          backgroundColor: grey,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("Connecting to America Online",
-                  style: TextStyle(
-                      fontFamily: "FA", fontSize: 30, color: Colors.black)),
-              AnimatedTextKit(
-                animatedTexts: [
-                  TyperAnimatedText(
-                    '...',
-                    textStyle: TextStyle(
-                        fontFamily: "FA",
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                    speed: const Duration(milliseconds: 2000),
-                  ),
-                ],
-                repeatForever: true,
-              )
-            ],
-          ),
-        ),
-      ),
-      */
       body: Center(
         child: Container(
           child: Scaffold95(
@@ -244,10 +206,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                           fontWeight: FontWeight.w100,
                                           letterSpacing: 2.0)),
                                 ),
-                                SizedBox(width: 30,),
+                                SizedBox(
+                                  width: 30,
+                                ),
                                 AOLButton(
                                   width: 130,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DialUpPage()),
+                                    );
+                                  },
                                   color: windowsDarkBlue,
                                   child: Text('SIGN ON',
                                       style: TextStyle(
