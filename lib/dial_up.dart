@@ -4,121 +4,72 @@ import 'package:flutter95/flutter95.dart';
 import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
+import 'package:just_audio/just_audio.dart';
+import 'dotcom.dart';
 
 class DialUpPage extends StatefulWidget {
-  const DialUpPage({Key? key}) : super(key: key);
+  DialUpPage({Key? key, required this.stepCounter}) : super(key: key);
+  int stepCounter;
 
   @override
   _DialUpPageState createState() => _DialUpPageState();
 }
 
-final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-  onPrimary: Colors.black87,
-  primary: Colors.grey[300],
-  minimumSize: Size(88, 36),
-  padding: EdgeInsets.symmetric(horizontal: 16),
-  shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(2)),
-  ),
-);
-
-void wait({@required int? numberOfMilliseconds}) async {
-  await Future.delayed(Duration(milliseconds: numberOfMilliseconds!));
-}
-
-String stepOne = "Step 1: Initializing modem...";
-String stepOK = "Modem initialization OK...";
-String stepTwo = "Step 2: Dialing...";
-String stepThree = "Step 3: Connected at 52000 bps...";
-String stepFour = "Step 4: Requesting network attention...";
-String stepFive = "Step 5: Talking to network...";
-String stepSix = "Step 6: Connecting to America Online...";
-String stepSeven = "Step 7: Checking password...";
-List<String> steps = [
-  stepOne,
-  stepOK,
-  stepThree,
-  stepFour,
-  stepFive,
-  stepSix,
-  stepSeven
-];
-
-int stepCounter = 0;
-
-List<int> timeCounter = [500, 1000, 20000, 1000, 1000, 1000, 1000, 1000];
-
 class _DialUpPageState extends State<DialUpPage> {
+  late AudioPlayer _player;
   final double aolIndicatorWidth = 275;
   final double aolIndicatorHeight = 200;
 
   String? stepText;
 
+
   void _setConnectionText() async {
-    Future.delayed(Duration(milliseconds: 5000));
 
-    String stepOne = "Step 1: Initializing modem...";
-    String stepOK = "Modem initialization OK...";
-    String stepTwo = "Step 2: Dialing...";
-    String stepThree = "Step 3: Connected at 52000 bps...";
-    String stepFour = "Step 4: Requesting network attention...";
-    String stepFive = "Step 5: Talking to network...";
-    String stepSix = "Step 6: Connecting to America Online...";
-    String stepSeven = "Step 7: Checking password...";
-    List steps = [
-      stepOne,
-      stepOK,
-      stepThree,
-      stepFour,
-      stepFive,
-      stepSix,
-      stepSeven
-    ];
+    var duration = await _player.setAsset('assets/dialup.mp3', preload: true);
+    await _player.setLoopMode(LoopMode.off);
+    await _player.setVolume(0.10);
+    _player.play();
+    
 
-    /*
-    setState(() {
-      stepText = stepOne;
-    });
-    await Future.delayed(Duration(milliseconds: 500));
-    setState(() {
-      stepText = stepOK;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      stepText = stepTwo;
-    });
-    await Future.delayed(Duration(milliseconds: 20000));
-    setState(() {
-      stepText = stepThree;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      stepText = stepFour;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      stepText = stepFive;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      stepText = stepSix;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      stepText = stepSeven;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    */
-    for (var time in timeCounter) {
+    await Future.delayed(Duration(seconds: 28), () {
       setState(() {
-        stepCounter++;
+        opacity = 1.0;
+        widget.stepCounter = 1;
       });
-      await Future.delayed(Duration(milliseconds: time));
-      if (stepCounter >= 6) {
-        break;
-      }
-    }
+    });
+
+    await Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+        aolTriangle = Image(
+            image: AssetImage(
+          'assets/icons/connected_triangle.png',
+        ));
+        widget.stepCounter = 2;
+      });
+    });
+    
+    dispose();
+    await Future.delayed(Duration(seconds: 2));
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainPage()),
+    );
   }
+
+  @override
+  void dispose() {
+    _player.stop();
+    _player.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _player = AudioPlayer();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -160,6 +111,7 @@ class _DialUpPageState extends State<DialUpPage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
+                                        child: Center(child: aolMan),
                                         color: Color(0xffCECEFF),
                                       ),
                                     ),
@@ -191,6 +143,11 @@ class _DialUpPageState extends State<DialUpPage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
+                                        child: Center(
+                                            child: Opacity(
+                                          opacity: opacity,
+                                          child: aolRun,
+                                        )),
                                         color: Color(0xffCECEFF),
                                       ),
                                     ),
@@ -222,6 +179,7 @@ class _DialUpPageState extends State<DialUpPage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: Container(
+                                        child: Center(child: aolTriangle),
                                         color: Color(0xffCECEFF),
                                       ),
                                     ),
@@ -241,16 +199,25 @@ class _DialUpPageState extends State<DialUpPage> {
                   height: 20,
                 ),
                 Text(
-                  "${steps[stepCounter]}",
+                  "${steps[widget.stepCounter]}",
                   style: TextStyle(
                     fontFamily: "MS",
+                    fontSize: 20,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 30,
+                ),
+                Container(
+                  height: 5,
+                  width: 700,
+                  color: Colors.black87,
+                ),
+                SizedBox(
+                  height: 30,
                 ),
                 AOLButton(
-                  width: 130,
+                  width: 100,
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -274,3 +241,30 @@ class _DialUpPageState extends State<DialUpPage> {
     );
   }
 }
+
+final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  onPrimary: Colors.black87,
+  primary: Colors.grey[300],
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2)),
+  ),
+);
+
+List<String> steps = [
+  "Dialing...",
+  "Connecting...",
+  "Connected!",
+];
+
+var aolMan = Image(image: AssetImage('assets/icons/purple_aol.png'));
+var aolRun = Image(
+    image: AssetImage(
+  'assets/icons/purple_aol_run.png',
+));
+var aolTriangle = Image(
+    image: AssetImage(
+  'assets/icons/purple_triangle.png',
+));
+var opacity = 0.0;

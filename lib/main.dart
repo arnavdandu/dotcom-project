@@ -6,6 +6,7 @@ import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
 
+
 void main() async {
   runApp(MyApp());
 }
@@ -215,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => DialUpPage()),
+                                          builder: (context) => DialUpPage(stepCounter: 0,)),
                                     );
                                   },
                                   color: windowsDarkBlue,
