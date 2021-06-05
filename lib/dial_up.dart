@@ -22,11 +22,108 @@ final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
   ),
 );
 
+void wait({@required int? numberOfMilliseconds}) async {
+  await Future.delayed(Duration(milliseconds: numberOfMilliseconds!));
+}
+
+String stepOne = "Step 1: Initializing modem...";
+String stepOK = "Modem initialization OK...";
+String stepTwo = "Step 2: Dialing...";
+String stepThree = "Step 3: Connected at 52000 bps...";
+String stepFour = "Step 4: Requesting network attention...";
+String stepFive = "Step 5: Talking to network...";
+String stepSix = "Step 6: Connecting to America Online...";
+String stepSeven = "Step 7: Checking password...";
+List<String> steps = [
+  stepOne,
+  stepOK,
+  stepThree,
+  stepFour,
+  stepFive,
+  stepSix,
+  stepSeven
+];
+
+int stepCounter = 0;
+
+List<int> timeCounter = [500, 1000, 20000, 1000, 1000, 1000, 1000, 1000];
+
 class _DialUpPageState extends State<DialUpPage> {
   final double aolIndicatorWidth = 275;
   final double aolIndicatorHeight = 200;
+
+  String? stepText;
+
+  void _setConnectionText() async {
+    Future.delayed(Duration(milliseconds: 5000));
+
+    String stepOne = "Step 1: Initializing modem...";
+    String stepOK = "Modem initialization OK...";
+    String stepTwo = "Step 2: Dialing...";
+    String stepThree = "Step 3: Connected at 52000 bps...";
+    String stepFour = "Step 4: Requesting network attention...";
+    String stepFive = "Step 5: Talking to network...";
+    String stepSix = "Step 6: Connecting to America Online...";
+    String stepSeven = "Step 7: Checking password...";
+    List steps = [
+      stepOne,
+      stepOK,
+      stepThree,
+      stepFour,
+      stepFive,
+      stepSix,
+      stepSeven
+    ];
+
+    /*
+    setState(() {
+      stepText = stepOne;
+    });
+    await Future.delayed(Duration(milliseconds: 500));
+    setState(() {
+      stepText = stepOK;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      stepText = stepTwo;
+    });
+    await Future.delayed(Duration(milliseconds: 20000));
+    setState(() {
+      stepText = stepThree;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      stepText = stepFour;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      stepText = stepFive;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      stepText = stepSix;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      stepText = stepSeven;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    */
+    for (var time in timeCounter) {
+      setState(() {
+        stepCounter++;
+      });
+      await Future.delayed(Duration(milliseconds: time));
+      if (stepCounter >= 6) {
+        break;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _setConnectionText();
+
     return Scaffold(
       backgroundColor: windowsBlue,
       body: Center(
@@ -50,28 +147,107 @@ class _DialUpPageState extends State<DialUpPage> {
                   children: [
                     Elevation95(
                       child: SizedBox(
-                        child: Container(color: offWhite,),
+                        child: Container(
+                          color: offWhite,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Elevation95(
+                              type: Elevation95Type.down,
+                              child: Container(
+                                child: SizedBox(
+                                  child: Container(
+                                    color: Color(0xff003163),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: Container(
+                                        color: Color(0xffCECEFF),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         height: aolIndicatorHeight,
                         width: aolIndicatorWidth,
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Elevation95(
                       child: SizedBox(
-                        child: Container(color: offWhite,),
+                        child: Container(
+                          color: offWhite,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Elevation95(
+                              type: Elevation95Type.down,
+                              child: Container(
+                                child: SizedBox(
+                                  child: Container(
+                                    color: Color(0xff003163),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: Container(
+                                        color: Color(0xffCECEFF),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         height: aolIndicatorHeight,
                         width: aolIndicatorWidth,
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Elevation95(
                       child: SizedBox(
-                        child: Container(color: offWhite,),
+                        child: Container(
+                          color: offWhite,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Elevation95(
+                              type: Elevation95Type.down,
+                              child: Container(
+                                child: SizedBox(
+                                  child: Container(
+                                    color: Color(0xff003163),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: Container(
+                                        color: Color(0xffCECEFF),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         height: aolIndicatorHeight,
                         width: aolIndicatorWidth,
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "${steps[stepCounter]}",
+                  style: TextStyle(
+                    fontFamily: "MS",
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
                 ),
                 AOLButton(
                   width: 130,

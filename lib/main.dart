@@ -6,7 +6,7 @@ import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
