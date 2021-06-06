@@ -19,17 +19,18 @@ class _DialUpPageState extends State<DialUpPage> {
   late AudioPlayer _player;
   final double aolIndicatorWidth = 275;
   final double aolIndicatorHeight = 200;
+  late var aolMan;
+  late var aolRun;
+  late var aolTriangle;
+  late var opacity;
 
   String? stepText;
 
-
   void _setConnectionText() async {
-
     var duration = await _player.setAsset('assets/dialup.mp3', preload: true);
     await _player.setLoopMode(LoopMode.off);
     await _player.setVolume(0.10);
     _player.play();
-    
 
     await Future.delayed(Duration(seconds: 28), () {
       setState(() {
@@ -47,10 +48,10 @@ class _DialUpPageState extends State<DialUpPage> {
         widget.stepCounter = 2;
       });
     });
-    
+
     dispose();
     await Future.delayed(Duration(seconds: 2));
-    
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => MainPage()),
@@ -67,9 +68,19 @@ class _DialUpPageState extends State<DialUpPage> {
   @override
   void initState() {
     super.initState();
+    aolMan = Image(image: AssetImage('assets/icons/purple_aol.png'));
+    aolRun = Image(
+        image: AssetImage(
+      'assets/icons/purple_aol_run.png',
+    ));
+    aolTriangle = Image(
+        image: AssetImage(
+      'assets/icons/purple_triangle.png',
+    ));
+    opacity = 0.0;
+
     _player = AudioPlayer();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -257,14 +268,3 @@ List<String> steps = [
   "Connecting...",
   "Connected!",
 ];
-
-var aolMan = Image(image: AssetImage('assets/icons/purple_aol.png'));
-var aolRun = Image(
-    image: AssetImage(
-  'assets/icons/purple_aol_run.png',
-));
-var aolTriangle = Image(
-    image: AssetImage(
-  'assets/icons/purple_triangle.png',
-));
-var opacity = 0.0;
