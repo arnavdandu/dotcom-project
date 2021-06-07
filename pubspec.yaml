@@ -63,7 +63,7 @@ flutter:
   fonts:
     - family: HelvBd
       fonts:
-        - asset: fonts/NHaasGroteskTXPro-55Rg.ttf
+        - asset: fonts/NHaasGroteskTXPro-75Bd.ttf
     - family: HelvMd
       fonts:
         - asset: fonts/NHaasGroteskTXPro-65Md.ttf
