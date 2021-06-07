@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter95/flutter95.dart';
@@ -14,15 +16,26 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("The Dot-Com Bubble"),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(200.0),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          title: Image.asset(
+            'assets/dotcom_logo.png',
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
-      body: Container(
-        child: Text("placeholder"),
+      body: Center(
+        child: Container(
+          width: (width * .40),
+          child: Text("placeholder"),
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter95/flutter95.dart';
 import 'package:us_hist_project/dial_up.dart';
+import 'package:us_hist_project/dotcom.dart';
 import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
@@ -34,11 +35,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? aolURL = 'https://imgur.com/a/GZInOjD';
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
+    final TextEditingController controller = TextEditingController(text: "Guest");
     return Scaffold(
       backgroundColor: windowsBlue,
       body: Center(
@@ -184,7 +184,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 AOLButton(
                                   width: 130,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                     Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MainPage()),
+                                    );
+                                  },
                                   color: aolButtonBorderBlue,
                                   child: Text('SETUP',
                                       style: TextStyle(

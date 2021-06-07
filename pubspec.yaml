@@ -47,6 +47,8 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
+    - assets/dotcom_logo.png
+    - assets/scanlines.png
     - assets/dialup.mp3
     - assets/Welcome.mp3
     - assets/icons/aol_icon_white_32.png
@@ -87,6 +89,12 @@ flutter:
     - family: TahomaBold
       fonts: 
         - asset: fonts/TAHOMABD.TTF
+    - family: Highway
+      fonts:
+        - asset: fonts/HWYGOTH.TTF
+    - family: HighwayNarrow
+      fonts:
+        - asset: fonts/HWYGNRRW.TTF
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
