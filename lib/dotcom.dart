@@ -22,12 +22,13 @@ class _MainPageState extends State<MainPage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(200.0),
+        preferredSize: Size.fromHeight(150.0),
         child: AppBar(
+          toolbarHeight: 150,
           backgroundColor: Colors.white,
           title: Image.asset(
             'assets/dotcom_logo.png',
-            fit: BoxFit.cover,
+            height: 125,
           ),
         ),
       ),
