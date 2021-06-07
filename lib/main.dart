@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter95/flutter95.dart';
 import 'package:us_hist_project/dial_up.dart';
 import 'package:us_hist_project/dotcom.dart';
 import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
-
 
 void main() async {
   runApp(MyApp());

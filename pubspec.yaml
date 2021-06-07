@@ -24,7 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^4.2.1
-  audioplayers: ^0.19.0
   just_audio: ^0.7.5
   flutter95: 
     git:
@@ -62,6 +61,15 @@ flutter:
     - assets/icons/purple_aol.png
     - assets/icons/purple_triangle.png
   fonts:
+    - family: HelvBd
+      fonts:
+        - asset: fonts/NHaasGroteskTXPro-55Rg.ttf
+    - family: HelvMd
+      fonts:
+        - asset: fonts/NHaasGroteskTXPro-65Md.ttf
+    - family: HelvRg
+      fonts:
+        - asset: fonts/NHaasGroteskTXPro-55Rg.ttf
     - family: Mondwest
       fonts:
         - asset: fonts/Mondwest-Regular.otf
