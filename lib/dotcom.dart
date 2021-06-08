@@ -3,7 +3,7 @@ import 'package:flutter95/flutter95.dart';
 import 'colors.dart';
 import 'package:flutter/widgets.dart';
 import 'common_widgets/aol_button.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,6 +13,19 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  var bodyStyle = TextStyle(fontFamily: "HelvRg", fontSize: 20);
+  var neuStyle = TextStyle(
+      fontFamily: "HelvRg",
+      fontSize: 60,
+      color: Colors.grey.shade50,
+      shadows: [
+        Shadow(
+            color: Colors.grey.shade300,
+            offset: Offset(3.0, 3.0),
+            blurRadius: 3.0),
+        Shadow(color: Colors.white, offset: Offset(-3.0, 3.0), blurRadius: 3.0),
+      ]);
+  var header = TextStyle(fontFamily: "HelvBd", fontSize: 50, letterSpacing: -2);
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -30,18 +43,43 @@ class _MainPageState extends State<MainPage> {
                 'assets/dotcom_logo.png',
                 height: 125,
               ),
-              SizedBox(height: 10,)
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(250, 30, 250, 30),
+        padding: const EdgeInsets.fromLTRB(230, 30, 230, 30),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("placeholder", style: TextStyle(fontFamily: "HelvBd", fontSize: 30, letterSpacing: -3),),
+            Row(
+              children: [
+                Text(
+                  "What was the Dot-Com",
+                  style: TextStyle(
+                      fontFamily: "HelvBd", fontSize: 50, letterSpacing: -2),
+                ),
+                DefaultTextStyle(
+                  style: header,
+                  child: AnimatedTextKit(
+                    pause: Duration(milliseconds: 3000),
+                    isRepeatingAnimation: false,
+                    animatedTexts: [
+                      TypewriterAnimatedText(' Boom?'),
+                      TypewriterAnimatedText(' Bubble?'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "The Dot-Com Boom was a period of rapid growth in the stock valuations of Internet-based companies as a result of extremely high investor optimism.",
+              style: bodyStyle,
+            )
           ],
         ),
       ),
